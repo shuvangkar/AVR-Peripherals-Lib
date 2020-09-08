@@ -1,6 +1,5 @@
 #include "ADC.h"
 
-/*****************************ADC********************************/
 
 Adc adc; //preinitiate adc
 
@@ -9,11 +8,11 @@ ISR(ADC_vect)
   adc.isrCallback();
 }
 
-void Adc::begin()
+void Adc::begin(byte reference)
 {
   
   ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); //Prescaler 128.So F_adc = 16MHz/128 = 125KHz
-  ADMUX  |= (1 << REFS0);                               //Reference AVCC
+  ADMUX  |= (reference << REFS0);                       //Reference 
   ADCSRA |= (1 << ADEN);                                //Enable ADC
   
 }

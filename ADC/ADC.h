@@ -5,12 +5,16 @@
 /**************Macro definition for ADC Auto Trigger source**********/
 #define FREE_RUNNING 0b000
 #define TIMER1_CMP_B 0b101
+/*************MAcro for Reference Voltage Source********************/
+#define AREF 		0
+#define AVCC 		1
+#define REF_1_1V 	3
 
 
 class Adc
 {
   public :
-    void begin();
+    void begin(byte reference = AVCC);
     void attachInterrupt(void (*isr)() = NULL); 
     void detachInterrupt();
     void setChannel(byte channel);
